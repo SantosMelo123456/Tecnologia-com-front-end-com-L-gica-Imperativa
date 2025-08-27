@@ -1,0 +1,98 @@
+# Coletor de Dados
+import time
+
+
+bd_pessoa = [
+    ['Linda', 165, 'feminino'],
+    ['Amanda', 160, 'feminino'],
+    ['Ricardo', 176, 'masculino']
+]
+
+def cadastra_pessoa(bd, nome, altura, genero):
+    pessoa = [nome, altura, genero]
+    bd.append(pessoa)
+    return bd
+
+
+def lista_pessoa(bd):
+    print('Listagem de pessoas')
+    for i in range(len(bd)):
+        print(f'{i+1} | {bd[i][1]} | {bd[i][0]}| {bd[i][2]}')
+
+def altera_pessoa(bd, indice, nome , altura, genero):
+    bd[indice][0] = nome
+    bd[indice][1] = altura
+    bd[indice][2] = genero
+    return bd
+
+
+def salvar_pessoa(bd):
+
+    with open('bd_pessoa.txt','w', encoding='utf-8') as arquivo:
+
+        for i in range (len(bd)):
+         print(f'Salvando a pessoa {bd[i][0]}')
+        arquivo.write(f'{bd[i][1]},{bd[i][0]}, {bd[i][0]}\n')
+
+
+while True:
+    print('1 - Cadastrar pessoa')
+    print('2 - Inserir a altura')
+    print('3 - Alterar pessoa')
+    print('4 - Salvar pessoa')
+    try:
+     op = int(input('Digite sua opção: '))
+    except Exception as e:
+        print(f'Error: {e}')
+        print('Digite um valor numérico!')
+        op = -1
+
+    if op == 1:
+        print('Iniciando o cadastro de pessoas.')
+        nome = input('Digite o nome da pessoa: ')
+        genero = input('Digite a genero da pessoa: ')
+        altura = input('Digite a altura da pessoa: ')
+
+        bd_pessoa = cadastra_pessoa(
+            bd=bd_pessoa,
+            nome=nome,
+            genero=genero,
+            altura=float(altura),
+
+        )
+        print('Pessoa cadastrada com sucesso!')
+
+        print('Pessoa cadastrada!')
+
+    elif op == 2:
+
+        lista_pessoa(bd_pessoa)
+        print('Pessoa listada!')
+
+    elif op == 3:
+        lista_pessoa(bd_pessoa)
+        i = int(input('Qual pessoa deseja alterar? '))
+        novo_nome = input('Digite uma novo nome: ')
+        nova_altura = input('Digite uma nova altura: ')
+        novo_genero = input('Digite uma nova genero: ')
+
+        bd_pessoa = altera_pessoa(
+            bd=bd_pessoa,
+            indice=(i - 1),
+            nome=novo_nome,
+            altura=nova_altura,
+            genero=novo_genero
+        )
+        print('Pessoa alterado com sucesso!')
+    elif op == 4:
+        print('Iniciando a persistência das pessoas!')
+        salvar_pessoa(bd_pessoa)
+        print('Pessoa salva com sucesso!')
+    else:
+        print(f'Opção {op} inválida!')
+
+
+
+
+    time.sleep(3)
+
