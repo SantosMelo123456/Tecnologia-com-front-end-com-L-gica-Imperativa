@@ -1,98 +1,80 @@
-# Coletor de Dados
 import time
 
-
 bd_pessoa = [
-    ['Linda', 165, 'feminino'],
-    ['Amanda', 160, 'feminino'],
-    ['Ricardo', 176, 'masculino']
+    ['Linda', 165 , 'feminino'],
+    ['Amanda', 160 , 'feminino'],
+    ['Ricardo', 176 , 'masculino'],
+    ['Fátima', 161 , 'feminino'],
+    ['Marcos', 185, 'masculino'],
 ]
 
-def cadastra_pessoa(bd, nome, altura, genero):
+def cadastra_pessoa(bd):
+    print("\n--- CADASTRO ---")
+    nome = input("Digite o nome da pessoa: ")
+    genero = input("Digite o gênero da pessoa: ")
+    altura = float(input("Digite a altura da pessoa: "))
+
     pessoa = [nome, altura, genero]
     bd.append(pessoa)
-    return bd
 
+    print("Pessoa cadastrada com sucesso!")
+    time.sleep(1)
 
-def lista_pessoa(bd):
-    print('Listagem de pessoas')
-    for i in range(len(bd)):
-        print(f'{i+1} | {bd[i][1]} | {bd[i][0]}| {bd[i][2]}')
+def comparacao_altura(bd):
+    if not bd:
+        print("Não há pessoas cadastradas.")
+        return
+    alturas = [p[1] for p in bd]
+    menor = min(alturas)
+    maior = max(alturas)
+    pessoa_maior = [p[0] for p in bd if p[1] == maior]
+    pessoa_menor = [p[0] for p in bd if p[1] == menor]
 
-def altera_pessoa(bd, indice, nome , altura, genero):
-    bd[indice][0] = nome
-    bd[indice][1] = altura
-    bd[indice][2] = genero
-    return bd
+    print(f"A menor altura é {menor} cm e pertence a: {', '.join(pessoa_menor)}")
+    print(f"A maior altura é {maior} cm e pertence a: {', '.join(pessoa_maior)}")
+    time.sleep(2)
 
+def media_altura_masculino(bd):
+    alturas_homens = [p[1] for p in bd if p[2].lower() == 'masculino']
+    if not alturas_homens:
+        print("Não há homens cadastrados.")
+    else:
+        media = sum(alturas_homens) / len(alturas_homens)
+        print(f"A média de altura dos homens é: {media:.2f} cm")
+    time.sleep(2)
 
-def salvar_pessoa(bd):
-
-    with open('bd_pessoa.txt','w', encoding='utf-8') as arquivo:
-
-        for i in range (len(bd)):
-         print(f'Salvando a pessoa {bd[i][0]}')
-        arquivo.write(f'{bd[i][1]},{bd[i][0]}, {bd[i][0]}\n')
+def numero_de_mulheres(bd):
+    qtd = sum(1 for p in bd if p[2].lower() == 'feminino')
+    print(f"O número de mulheres cadastradas é: {qtd}")
+    nomes_mulheres = [p[0] for p in bd if p[2].lower() == 'feminino']
+    print("Nomes das mulheres:", ", ".join(nomes_mulheres))
+    time.sleep(2)
 
 
 while True:
-    print('1 - Cadastrar pessoa')
-    print('2 - Inserir a altura')
-    print('3 - Alterar pessoa')
-    print('4 - Salvar pessoa')
+    print("\n--- MENU ---")
+    print("1 - Cadastrar pessoa")
+    print("2 - Maior e menor altura")
+    print("3 - Média da altura masculina")
+    print("4 - Número de mulheres")
+    print("5 - Sair")
+
     try:
-     op = int(input('Digite sua opção: '))
-    except Exception as e:
-        print(f'Error: {e}')
-        print('Digite um valor numérico!')
-        op = -1
+        op = int(input("Digite sua opção: "))
+    except ValueError:
+        print("Por favor, digite um número válido!")
+        continue
 
     if op == 1:
-        print('Iniciando o cadastro de pessoas.')
-        nome = input('Digite o nome da pessoa: ')
-        genero = input('Digite a genero da pessoa: ')
-        altura = input('Digite a altura da pessoa: ')
-
-        bd_pessoa = cadastra_pessoa(
-            bd=bd_pessoa,
-            nome=nome,
-            genero=genero,
-            altura=float(altura),
-
-        )
-        print('Pessoa cadastrada com sucesso!')
-
-        print('Pessoa cadastrada!')
-
+        cadastra_pessoa(bd_pessoa)
     elif op == 2:
-
-        lista_pessoa(bd_pessoa)
-        print('Pessoa listada!')
-
+        comparacao_altura(bd_pessoa)
     elif op == 3:
-        lista_pessoa(bd_pessoa)
-        i = int(input('Qual pessoa deseja alterar? '))
-        novo_nome = input('Digite uma novo nome: ')
-        nova_altura = input('Digite uma nova altura: ')
-        novo_genero = input('Digite uma nova genero: ')
-
-        bd_pessoa = altera_pessoa(
-            bd=bd_pessoa,
-            indice=(i - 1),
-            nome=novo_nome,
-            altura=nova_altura,
-            genero=novo_genero
-        )
-        print('Pessoa alterado com sucesso!')
+        media_altura_masculino(bd_pessoa)
     elif op == 4:
-        print('Iniciando a persistência das pessoas!')
-        salvar_pessoa(bd_pessoa)
-        print('Pessoa salva com sucesso!')
+        numero_de_mulheres(bd_pessoa)
+    elif op == 5:
+        print("Encerrando o programa..")
+        time.sleep(1.5)
     else:
-        print(f'Opção {op} inválida!')
-
-
-
-
-    time.sleep(3)
-
+        print("Opção inválida! Tente novamente.")
