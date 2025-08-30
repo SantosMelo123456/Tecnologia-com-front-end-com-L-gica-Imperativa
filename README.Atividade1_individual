@@ -1,1 +1,92 @@
+O programa "Coletor de Dados" permite:
+Cadastrar uma pessoa, onde o usuário tende a digitar o nome, gênero e altura, onde os dados são salvos em uma 
+lista (bd_pessoa ou seja, banco de dados). O programa tende a verificar a maior e menor altura das pessoas cadastradas
+O programa mostra também quem possui essas alturas, calcula a média da altura masculina e exibe os resultados, conta o 
+números de mulheres cadastradas e exibe o nomes delas. Por fim, o usuário tem a possibilidade de sair do programa. 
+
+PROGRAMA DE COLETOR DE DADOS:
+
+import time
+
+MAX= 15
+
+bd_pessoa = [                        # Banco de Dados com exemplos de pessoas com suas alturas e gênero
+    ['Linda', 165 , 'feminino'],
+    ['Amanda', 160 , 'feminino'],
+    ['Ricardo', 176 , 'masculino'],
+    ['Fátima', 161 , 'feminino'],
+    ['Alan Delon',177, 'masculino'],
+]
+
+def cadastra_pessoa(bd):           # def cadastro com inputs de nomes, gênero e altura da pessoa que está fazedo o cadastro inicial
+    print("\n--- CADASTRO ---")
+    nome = input("Digite o nome da pessoa: ")
+    genero = input("Digite o gênero da pessoa: ")
+    altura = float(input("Digite a altura da pessoa: "))
+
+    pessoa = [nome, altura, genero]      # Dados coletados da pessoa cadastrada
+    bd.append(pessoa)
+
+    print("Pessoa cadastrada com sucesso!")
+    time.sleep(1.5)
+
+def comparacao_altura(bd):          # def comparação de altura, onde percorre p[1] (altura) de cada p (pessoa) no banco de dados, e compara se é meior ou menor
+    if not bd:
+        print("Não há pessoas cadastradas.")
+        return
+    alturas = [p[1] for p in bd]
+    menor = min(alturas)
+    maior = max(alturas)
+    pessoa_maior = [p[0] for p in bd if p[1] == maior]
+    pessoa_menor = [p[0] for p in bd if p[1] == menor]
+
+    print(f"A menor altura é {menor} cm e pertence a: {', '.join(pessoa_menor)}")
+    print(f"A maior altura é {maior} cm e pertence a: {', '.join(pessoa_maior)}")
+    time.sleep(2.5)
+
+def media_altura_masculino(bd):                                       #def que calcula a media aritimética das alturas masculinas que se encontram no banco de dados
+    alturas_homens = [p[1] for p in bd if p[2].lower() == 'masculino']
+    if not alturas_homens:
+        print("Não há homens cadastrados.")
+    else:
+        media = sum(alturas_homens) / len(alturas_homens)            # Cálculo da média aritimética
+        print(f"A média de altura dos homens é: {media:.2f} cm")
+    time.sleep(2.5)
+
+def numero_de_mulheres(bd):                                             #def que calcula a quantidade de mulheres no programa
+    qtd = sum(1 for p in bd if p[2].lower() == 'feminino')              #Ele soma +1, se p2 (genero) no bd for feminino
+    print(f"O número de mulheres cadastradas é: {qtd}")
+    nomes_mulheres = [p[0] for p in bd if p[2].lower() == 'feminino']   #Percorre bd, filtra as pessoas do gênero feminino e cria uma lista só com os nomes delas
+    print("Nomes das mulheres:", ", ".join(nomes_mulheres))             #Imprimi o nome das mulheres
+    time.sleep(2.5)
+
+
+while True:                                               # Loop infinito que mantém o programa rodando até o usuário escolher sair
+    print('-- Coletor de dados --')                     # Título do programa
+    print("\n--- MENU ---")                           # Mostra as opçoes disponíveis
+    print("1 - Cadastrar pessoa")                   # Permite adiconar uma nova pessoa ao banco de dados
+    print("2 - Maior e menor altura")             # Calcula a maior e menor altura cadastradas
+    print("3 - Média da altura masculina")      # Calcula a media da altura apenas dos homens
+    print("4 - Número de mulheres")           # Calcula a quantidade de mulheres cadastradas
+    print("5 - Sair")                       # Finaliza o programa
+
+    try:                                                #
+        op = int(input("Digite sua opção: "))
+    except ValueError:
+        print("Por favor, digite um número válido!")
+        continue
+
+    if op == 1:
+        cadastra_pessoa(bd_pessoa)
+    elif op == 2:
+        comparacao_altura(bd_pessoa)
+    elif op == 3:
+        media_altura_masculino(bd_pessoa)
+    elif op == 4:
+        numero_de_mulheres(bd_pessoa)
+    elif op == 5:
+        print("Encerrando o programa..")
+        time.sleep(1.5)
+    else:
+        print("Opção inválida! Tente novamente.")
 
