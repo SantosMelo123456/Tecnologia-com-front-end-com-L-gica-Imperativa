@@ -37,3 +37,10 @@ console.log(TotalAulaSementre);
 console.log(TotalFalta);
 console.log(percentualPresencaAluno);
 
+//Obtendo dados das duas provas e sua media//
+let Prova1 = parseInt(prompt("Informe a nota da 1° prova:"));
+let Prova2 = parseInt(prompt("Informe a nota da 2° prova:"));
+
+// Calculando a media das duas provas//
+let mediaProvas = ((Prova1/Prova2)/2).toFixed(2)
+
