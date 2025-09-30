@@ -1,0 +1,56 @@
+// criar array:
+let numeros = new array [1,2,3,4];
+
+// acessar elementos da lista:
+console.log(numeros[1]);
+
+// modificar um elemento:
+numeros [1] = "Novo 1"
+console.log(numeros);
+
+// length (tamanho):
+let numeros = [1,2, 3, 4];
+console.log(numeros.length); // irá sair 5, pois há 5 elementos na lista
+
+// métodos de um array:
+let numeros = [1, 2, 3, 4];
+numeros.push(1);
+numeros.pop(); // resultado [2, 3, 4]
+
+// percorrer um array:
+let numeros = [1, 2, 3, 4];
+for (let i = 0;)i < numeros.length; i++{
+    console.log(numeros[1]);
+    
+}
+
+// map:
+let numeros = [1, 2, 3, 4];
+
+let resultado = numeros.map((valor, indice, array) => {
+    console.log(`Valor: ${valor}, Índice: ${indice}, Array: [${array}]`);
+    return valor * 2;
+});
+
+console.log(resultado); // saída: [2, 4, 6, 8]
+
+// filter:
+let numeros = [1, 2, 3, 4];
+
+let filtrados = numeros.filter((valor, indice, array) => {
+    console.log(`Valor: ${valor}, Índice: ${indice}, Array: [${array}]`);
+    return valor < 3
+});
+
+console.log(filtrados); // saída: [1, 2]
+
+
+// reduce:
+let numeros = [1, 2, 3, 4];
+
+let soma = numeros.reduce((acumulador, valor, indice, array) => {
+    console.log(`Acumulador $(acumulador), Valor: ${valor}, Índice: ${indice}, Array: [${array}]`);
+    return acumulador + valor
+} , 0);
+
+console.log(soma); // saída: [10]
