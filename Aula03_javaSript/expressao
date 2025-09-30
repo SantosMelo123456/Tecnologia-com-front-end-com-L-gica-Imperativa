@@ -1,0 +1,8 @@
+//exemplo:
+
+const saudacao  = function(nome){
+    return "Olá, " + nome + "!"
+
+};
+
+console.log(saudacao("Ana Júliaaa aa aa"));

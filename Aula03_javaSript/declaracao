@@ -1,0 +1,30 @@
+var empresa = "TechCorp";
+
+let usuarios = [];
+
+const maxUsuarios = 5;
+
+// função declarada para cadastrar usuário = cadastrarUsuario
+function cadastrarUsuario(nome) {
+  if (usuarios.length < maxUsuarios) {
+    usuarios.push(nome);
+    console.log(nome + " cadastrado com sucesso!");
+  } else {
+    console.log("Limite de usuários atingido!");
+  }
+}
+
+// função declarada para listar usuários = listarUsuarios
+function listarUsuarios() {
+  console.log("Usuários cadastrados:");
+  for (let i = 0; i < usuarios.length; i++) {
+    console.log(i + 1 + ". " + usuarios[i]);
+  }
+}
+
+// chamar as funções
+cadastrarUsuario("Linda Maria");
+cadastrarUsuario("João");
+cadastrarUsuario("Lizie");
+
+listarUsuarios();

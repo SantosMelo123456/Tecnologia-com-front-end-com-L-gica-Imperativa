@@ -1,0 +1,12 @@
+// exemplo de callback:
+
+function cumprimentar(nome) {
+  console.log("Olá, " + nome + "!");
+}
+
+function processaUsuario(usuario, callback) {
+  
+  callback(usuario); 
+}
+
+processaUsuario("Linda Maria", cumprimentar);
