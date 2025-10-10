@@ -1,0 +1,29 @@
+let N = parseInt(prompt("Quantos números você quer informar?"));   
+let soma = 0;
+let menor;
+let maior;
+
+for (let i = 0; i < N; i++){
+    
+    let numero = parsetFloat(prompt("Digite um número "+(i + 1)));
+    soma += numero
+    if (i === 0) {
+        menor = numero;
+        maior = numero;
+    } else {
+        if (numero < menor) { 
+            menor = numero;
+        }
+        if (numero > maior) {
+            maior = numero;
+        }
+    }       
+//Explicação do if e else:
+//A partir do segundo número, compara: Se o número digitado for menor que o menor 
+ // atual (let N), ele vira o novo menor.
+//Se for maior que o maior atual, ele vira o novo maior
+}
+
+console.log("Menor valor: " + menor);
+console.log("Maior valor: " + maior);
+console.log("Soma dos valores: " + soma);
