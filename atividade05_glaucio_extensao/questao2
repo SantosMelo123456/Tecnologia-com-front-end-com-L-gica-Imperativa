@@ -1,0 +1,15 @@
+let impares = 0;
+let pares = 0;
+for (let i = 0; i < 10; i++) {
+
+    let idade = parseInt(prompt ("Digite um número: "));
+    if (idade % 2 != 0){
+        impares ++;
+    } else {
+        pares++;
+    }
+
+}     
+
+console.log ("Números impares "+impares.toFixed(2));
+console.log ("Numeros pares "+pares.toFixed(2));
