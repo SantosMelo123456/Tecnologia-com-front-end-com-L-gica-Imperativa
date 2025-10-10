@@ -1,0 +1,12 @@
+function calculo(){
+    
+    let raio = parseFloat(prompt("Digite a área do círculo "))
+    let area = 3.14 * raio * raio;
+    let perimetro = 2 * 3.14 * raio;
+
+    console.log ("Raio "+raio);
+    console.log ("Área do círculo "+area)
+    console.log ("Perímetro "+perimetro)
+}
+
+calculo();
