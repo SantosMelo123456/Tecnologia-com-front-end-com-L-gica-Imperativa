@@ -1,0 +1,13 @@
+function calculoMontante(){
+
+    let capital = parseInt(prompt("Capital Inicial: "))
+    let taxa = parseInt(prompt("Taxa de Juros: "))
+    let tempo = parseInt(prompt("Tempo de investimento: "))
+
+    let montante;
+
+    montante = capital * (1 + taxa) * tempo;
+
+    console.log(montante.toFixed(2))
+
+}
