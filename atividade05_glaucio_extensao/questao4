@@ -1,0 +1,23 @@
+let salario = 1000;
+let aumento = 0.15;
+let ano = 1995
+
+for (let i = 0; i < 30; i++){   // o laço vai até 30 anos depois, que dá até hj, 2025
+    salario *= aumento // calcula o salario e guarda-o
+    ano ++
+
+    console.log("Salário do ano "+ano+"= " + salario.toFixed(2))
+
+}    
+
+let salario_ = parseFloat(prompt("Digite o salário incial "))
+let aumento_ = 0.15;
+let ano_ = 1995
+
+for (let i = 0; i < 30; i++){
+    salario_ *= aumento_
+    ano_ ++
+
+    console.log("Salário do ano "+ano+"= " + salario_)
+
+}    
